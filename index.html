@@ -137,7 +137,15 @@
     .btn-lg { padding: 18px 40px; font-size: 18px; }
 
     /* Apple badge */
-    .apple-badge {
+.apple-badge {
+  display: inline-block;
+  line-height: 0;
+  transition: transform 0.18s, opacity 0.18s;
+}
+.apple-badge:hover { transform: translateY(-2px); opacity: 0.9; }
+.apple-badge img { height: 64px; width: auto; display: block; }
+    
+    /*.apple-badge {
       display: inline-flex; align-items: center; gap: 12px;
       background: #000; color: #fff;
       padding: 14px 28px; border-radius: 14px;
@@ -147,7 +155,7 @@
     .apple-badge:hover { transform: translateY(-2px); opacity: 0.9; }
     .apple-badge .apple-icon { font-size: 26px; }
     .apple-badge-text-top { font-size: 10px; font-weight: 400; opacity: 0.7; display: block; }
-    .apple-badge-text-main { font-size: 17px; font-weight: 700; display: block; }
+    .apple-badge-text-main { font-size: 17px; font-weight: 700; display: block; } */
 
     /* ─── NAV ─── */
     nav {
@@ -759,6 +767,12 @@
           No more nagging. No more bribing. Kudosy turns good behavior into a game kids can't stop playing — and learn the skill of money management while they're at it.
         </p>
         <div class="hero-actions">
+  <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_hero_badge', {'button_location': 'hero'})" class="apple-badge">
+    <img src="black.svg" alt="Download on the App Store">
+  </a>
+  <a href="#how" class="btn btn-outline">See How It Works</a>
+</div>
+        <!-- <div class="hero-actions">
           <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_hero_badge', {'button_location': 'hero'})" class="apple-badge">
             <span class="apple-icon">🍎</span>
             <div>
@@ -767,7 +781,7 @@
             </div>
           </a>
           <a href="#how" class="btn btn-outline">See How It Works</a>
-        </div>
+        </div> -->
         <div class="hero-proof">
           <div class="proof-item"><span class="proof-stars">★★★★★</span> 4.8 stars</div>
           <div class="proof-item"><span class="proof-check">✓</span> Free 7-day trial</div>
@@ -1305,18 +1319,23 @@
         7 days free.<br>One moment that changes everything.
       </h2>
       <p class="cta-sub">
-        The trial costs you nothing. It takes less than 5 minutes to set up. And the moment your child asks you what more can they do to earn kudos — you will understand why families can't go back.
+        The trial costs you nothing. It takes less than 5 minutes to set up. And once you have that moment where your child asks you what they can do to earn more kudos — you will understand why families can't go back.
       </p>
       <div class="cta-actions">
+  <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_final_cta', {'button_location': 'final_cta'})" class="apple-badge">
+    <img src="black.svg" alt="Download on the App Store">
+  </a>
+</div>
+      <!-- <div class="cta-actions">
         <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_final_cta', {'button_location': 'final_cta'})" class="apple-badge"> <!--style="padding:18px 32px;border-radius:16px;">
-          <span style="font-size:32px;">🍎</span> -->
+          <span style="font-size:32px;">🍎</span>
           <div>
             <img src="black.svg" alt="Download now">
-            <!-- <span style="font-size:11px;font-weight:400;opacity:0.7;display:block;">Download free on the</span>
-            <span style="font-size:20px;font-weight:800;display:block;">App Store</span> -->
+            <span style="font-size:11px;font-weight:400;opacity:0.7;display:block;">Download free on the</span>
+            <span style="font-size:20px;font-weight:800;display:block;">App Store</span>
           </div>
         </a>
-      </div>
+      </div> -->
       <div class="no-risk">
         <span>Free 7-day trial</span>
         <span>No bank account needed</span>
