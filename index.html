@@ -16,10 +16,10 @@
   <link rel="apple-touch-icon" href="kudosy_favicon.png">
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kudosy Family Wallet","operatingSystem":"iOS","applicationCategory":"LifestyleApplication","offers":{"@type":"Offer","price":"5.99","priceCurrency":"USD","description":"Monthly subscription. 7-day free trial."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"247"},"description":"Kudosy is a digital family wallet that gamifies good behavior and teaches children to earn, save, spend, give, and invest — using a fictional currency with no bank account required.","url":"https://kudosy.com"}
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kudosy Family Wallet","operatingSystem":"iOS","applicationCategory":"LifestyleApplication","offers":{"@type":"Offer","price":"3.99","priceCurrency":"USD","description":"Monthly subscription. 7-day free trial."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"247"},"description":"Kudosy is a digital family wallet that gamifies good behavior and teaches children to earn, save, spend, give, and invest — using a fictional currency with no bank account required.","url":"https://kudosy.com"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Kudosy?","acceptedAnswer":{"@type":"Answer","text":"Kudosy is a family reward app that uses a fictional currency called Kudos to gamify good behavior and teach children financial literacy. No bank account or real money is required."}},{"@type":"Question","name":"Does Kudosy require a bank account?","acceptedAnswer":{"@type":"Answer","text":"No. Kudosy uses a fictional currency called Kudos — no bank account, no debit card, no real money. This is one of Kudosy's biggest advantages over apps like Greenlight and BusyKid."}},{"@type":"Question","name":"How much does Kudosy cost?","acceptedAnswer":{"@type":"Answer","text":"Kudosy is $5.99/month or $49.99/year for your whole family. There is a free 7-day trial with no credit card required for kids."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Kudosy?","acceptedAnswer":{"@type":"Answer","text":"Kudosy is a family reward app that uses a fictional currency called Kudos to gamify good behavior and teach children financial literacy. No bank account or real money is required."}},{"@type":"Question","name":"Does Kudosy require a bank account?","acceptedAnswer":{"@type":"Answer","text":"No. Kudosy uses a fictional currency called Kudos — no bank account, no debit card, no real money. This is one of Kudosy's biggest advantages over apps like Greenlight and BusyKid."}},{"@type":"Question","name":"How much does Kudosy cost?","acceptedAnswer":{"@type":"Answer","text":"Kudosy is $3.99/month or $24.99/year for your whole family. There is a free 7-day trial with no credit card required for kids."}}]}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -260,7 +260,6 @@
       0%,100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-    .badge-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
     /* ─── SECTION HEADERS ─── */
     .section-hd { text-align: center; margin-bottom: 64px; }
@@ -710,15 +709,20 @@
     .highlight-box strong { color: var(--app-blue); }
   </style>
 
-  /* ─── Google Analytics ─── */
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- ─── Google Analytics ─── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-19WFVQZ2FE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-19WFVQZ2FE');
+    gtag('config', 'G-19WFVQZ2FE', { anonymize_ip: true });
+
+    function trackAppStore(location) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'click_appstore', { button_location: location });
+      }
+    }
   </script>
-  
 </head>
 <body>
 
@@ -736,7 +740,7 @@
       <li><a href="#compare">Why Kudosy</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_nav', {'button_location': 'nav'})" class="btn btn-green">Try Free →</a>
+    <a href="https://apps.apple.com/app/id1645781178" target="_blank" rel="noopener" onclick="trackAppStore('nav')" class="btn btn-green">Try Free →</a>
   </div>
 </nav>
 
@@ -757,7 +761,7 @@
           No more nagging. No more bribing. Kudosy turns good behavior into a game kids can't stop playing — and learn the skill of money management while they're at it.
         </p>
         <div class="hero-actions">
-          <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_hero_badge', {'button_location': 'hero'})" class="apple-badge">
+          <a href="https://apps.apple.com/app/id1645781178" target="_blank" rel="noopener" onclick="trackAppStore('hero')" class="apple-badge">
             <span class="apple-icon">🍎</span>
             <div>
               <span class="apple-badge-text-top">Download on the</span>
@@ -948,7 +952,7 @@
         <div class="feature-callout">
           <div class="fc-icon" style="background:rgba(245,200,66,0.15);">🎯</div>
           <div>
-            <div class="fc-title">Your Child Picks A Goal</div>
+            <div class="fc-title">Your Child Picks a Goal</div>
             <div class="fc-desc">You decide what your kids can set as a goal, and you decide what it costs in kudos.</div>
           </div>
         </div>
@@ -962,8 +966,8 @@
         <div class="feature-callout">
           <div class="fc-icon" style="background:rgba(169,85,247,0.12);">🃏</div>
           <div>
-            <div class="fc-title">They Do Good To Reach Their Goal</div>
-            <div class="fc-desc">When it's time to redeem for their goal, it's up to you: pick it up at the store, order it online, or give it to them from a stash you've already prepared. No real money changes hands inside Kudosy. It's a ledger your family trusts, backed by a rockstar parent like you.</div>
+            <div class="fc-title">They Do Good to Reach Their Goal</div>
+            <div class="fc-desc">When they hit it, you approve the redemption and the kudo cost comes out of their balance. Then it's up to you: pick it up at the store, order it online, or give it to them from a stash you've already prepared. No real money changes hands inside Kudosy. It's a ledger your family trusts, backed by a rockstar parent like you.</div>
           </div>
         </div>
       </div>
@@ -1148,7 +1152,7 @@
           </tr>
           <tr>
             <td>Flat family pricing</td>
-            <td class="kudosy-td"><span class="cmp-check">✓</span> $5.99/mo all kids</td>
+            <td class="kudosy-td"><span class="cmp-check">✓</span> $3.99/mo all kids</td>
             <td><span class="cmp-warn">⚠</span> $5.99–$14.98/mo</td>
             <td><span class="cmp-check">✓</span> $4/mo</td>
             <td><span class="cmp-cross">✗</span> Per-child fees</td>
@@ -1191,7 +1195,7 @@
         <p class="obj-a">Yes — each child gets their own card, goal, balance, and mascot character. You award Kudos differently to a 5-year-old than a 13-year-old. Parents report that having all kids on the system actually helps with fairness — everyone can see everyone is earning.</p>
       </div>
       <div class="obj-card reveal" style="transition-delay:0.5s">
-        <p class="obj-q">"$5.99 a month seems like a lot for an app."</p>
+        <p class="obj-q">"$3.99 a month seems like a lot for an app."</p>
         <p class="obj-a">That's less than lunch, for your entire family with unlimited children. You're getting a parenting system, financial literacy curriculum, and behavior reinforcement tool. There's also a free 7-day trial. Try it. See what happens when your child presses that button for the first time.</p>
       </div>
     </div>
@@ -1224,7 +1228,7 @@
     <div class="pricing-cards">
       <div class="price-card reveal">
         <div class="price-plan">Monthly</div>
-        <div class="price-amt"><span class="dollar">$</span>5.99</div>
+        <div class="price-amt"><span class="dollar">$</span>3.99</div>
         <div class="price-per">per month · whole family</div>
         <ul class="price-features">
           <li><span class="pf-check">✓</span> Unlimited children</li>
@@ -1232,21 +1236,21 @@
           <li><span class="pf-check">✓</span> Cancel anytime</li>
           <li><span class="pf-check">✓</span> 7-day free trial</li>
         </ul>
-        <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_pricing_monthly', {'button_location': 'pricing_monthly'})" class="btn btn-outline" style="width:100%;justify-content:center;">Start Free Trial</a>
+        <a href="https://apps.apple.com/app/id1645781178" target="_blank" rel="noopener" onclick="trackAppStore('pricing_monthly')" class="btn btn-outline" style="width:100%;justify-content:center;">Start Free Trial</a>
       </div>
       <div class="price-card best reveal" style="transition-delay:0.15s">
-        <div class="best-label">BEST VALUE — SAVE 30%</div>
+        <div class="best-label">BEST VALUE — SAVE 48%</div>
         <div class="price-plan">Annual</div>
-        <div class="price-amt" style="color:var(--app-green);"><span class="dollar">$</span>49.99</div>
-        <div class="price-per">per year · that's $4.16/mo</div>
-        <div class="price-save">Save $21.89 vs. monthly</div>
+        <div class="price-amt" style="color:var(--app-green);"><span class="dollar">$</span>24.99</div>
+        <div class="price-per">per year · that's $2.08/mo</div>
+        <div class="price-save">Save $22.89 vs. monthly</div>
         <ul class="price-features">
           <li><span class="pf-check">✓</span> Unlimited children</li>
           <li><span class="pf-check">✓</span> All features included</li>
-          <li><span class="pf-check">✓</span> 2 months free</li>
+          <li><span class="pf-check">✓</span> Nearly 6 months free</li>
           <li><span class="pf-check">✓</span> 7-day free trial</li>
         </ul>
-        <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_pricing_annual', {'button_location': 'pricing_annual'})" class="btn btn-green" style="width:100%;justify-content:center;">Start Free Trial</a>
+        <a href="https://apps.apple.com/app/id1645781178" target="_blank" rel="noopener" onclick="trackAppStore('pricing_annual')" class="btn btn-green" style="width:100%;justify-content:center;">Start Free Trial</a>
       </div>
     </div>
     <p class="trial-note reveal">7-day free trial for new users. No credit card required for kids. Cancel anytime from iPhone Settings.</p>
@@ -1283,7 +1287,7 @@
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">How much does Kudosy cost?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Kudosy is $5.99/month or $49.99/year for your entire family — unlimited children. There is a free 7-day trial. You can cancel anytime from your iPhone Settings. No credit card is required for your children to participate.</div>
+        <div class="faq-a">Kudosy is $3.99/month or $24.99/year for your entire family — unlimited children. There is a free 7-day trial. You can cancel anytime from your iPhone Settings. No credit card is required for your children to participate.</div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">How does the investment feature work?<div class="faq-toggle">+</div></div>
@@ -1306,7 +1310,7 @@
         The trial costs you nothing. It takes less than 5 minutes to set up. And the moment your child asks you what more can they do to earn kudos — you will understand why families can't go back.
       </p>
       <div class="cta-actions">
-        <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_final_cta', {'button_location': 'final_cta'})" class="apple-badge" style="padding:18px 32px;border-radius:16px;">
+        <a href="https://apps.apple.com/app/id1645781178" target="_blank" rel="noopener" onclick="trackAppStore('final_cta')" class="apple-badge" style="padding:18px 32px;border-radius:16px;">
           <span style="font-size:32px;">🍎</span>
           <div>
             <span style="font-size:11px;font-weight:400;opacity:0.7;display:block;">Download free on the</span>
@@ -1343,7 +1347,7 @@
           <li><a href="#features">Features</a></li>
           <li><a href="#behaviors">What Kids Learn</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_footer', {'button_location': 'footer'})">Download App</a></li>
+          <li><a href="https://apps.apple.com/app/id1645781178" target="_blank" rel="noopener" onclick="trackAppStore('footer')">Download App</a></li>
         </ul>
       </div>
       <div>
