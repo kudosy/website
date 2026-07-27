@@ -712,6 +712,40 @@
     .highlight-box strong { color: var(--app-blue); }
   </style>
 
+  <noscript>
+    <style>
+      .reveal { opacity: 1; transform: none; }
+    </style>
+  </noscript>
+
+  <!-- ─── Error reporting ─── -->
+  <script>
+    window.kudosyReportError = function (context, error) {
+      var description = context + ': ' + ((error && (error.stack || error.message)) || error);
+      if (window.console && console.error) console.error(description);
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'exception', { description: description.slice(0, 500), fatal: false });
+        }
+      } catch (reportingError) {
+        if (window.console && console.error) console.error('kudosyReportError failed:', reportingError);
+      }
+    };
+
+    window.addEventListener('error', function (event) {
+      var target = event.target;
+      if (target && target !== window && target.tagName) {
+        window.kudosyReportError('resource_load_failed', target.src || target.href || target.tagName);
+        return;
+      }
+      window.kudosyReportError('uncaught_error', event.error || event.message);
+    }, true);
+
+    window.addEventListener('unhandledrejection', function (event) {
+      window.kudosyReportError('unhandled_rejection', event.reason);
+    });
+  </script>
+
   <!-- ─── Google Analytics ─── -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-19WFVQZ2FE"></script>
   <script>
@@ -719,8 +753,18 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-19WFVQZ2FE');
+
+    // Analytics must never break a click: swallow only after reporting.
+    window.trackEvent = function (name, params) {
+      try {
+        gtag('event', name, params);
+      } catch (error) {
+        window.kudosyReportError('track_event_failed:' + name, error);
+      }
+      return true;
+    };
   </script>
-  
+
 </head>
 <body>
 
@@ -738,7 +782,7 @@
       <li><a href="#compare">Why Kudosy</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_nav', {'button_location': 'nav'})" class="btn btn-green">Try Free →</a>
+    <a href="https://apps.apple.com/app/id1645781178" onclick="trackEvent('click_appstore_nav', {'button_location': 'nav'})" class="btn btn-green">Try Free →</a>
   </div>
 </nav>
 
@@ -759,7 +803,7 @@
           No more nagging. No more bribing. Kudosy turns good behavior into a game kids can't stop playing — and learn the skill of money management while they're at it.
         </p>
         <div class="hero-actions">
-          <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_hero_badge', {'button_location': 'hero'})" class="apple-badge">
+          <a href="https://apps.apple.com/app/id1645781178" onclick="trackEvent('click_appstore_hero_badge', {'button_location': 'hero'})" class="apple-badge">
             <span class="apple-icon">🍎</span>
             <div>
               <span class="apple-badge-text-top">Download on the</span>
@@ -1234,7 +1278,7 @@
           <li><span class="pf-check">✓</span> Cancel anytime</li>
           <li><span class="pf-check">✓</span> 7-day free trial</li>
         </ul>
-        <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_pricing_monthly', {'button_location': 'pricing_monthly'})" class="btn btn-outline" style="width:100%;justify-content:center;">Start Free Trial</a>
+        <a href="https://apps.apple.com/app/id1645781178" onclick="trackEvent('click_appstore_pricing_monthly', {'button_location': 'pricing_monthly'})" class="btn btn-outline" style="width:100%;justify-content:center;">Start Free Trial</a>
       </div>
       <div class="price-card best reveal" style="transition-delay:0.15s">
         <div class="best-label">BEST VALUE — SAVE 30%</div>
@@ -1248,7 +1292,7 @@
           <li><span class="pf-check">✓</span> 2 months free</li>
           <li><span class="pf-check">✓</span> 7-day free trial</li>
         </ul>
-        <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_pricing_annual', {'button_location': 'pricing_annual'})" class="btn btn-green" style="width:100%;justify-content:center;">Start Free Trial</a>
+        <a href="https://apps.apple.com/app/id1645781178" onclick="trackEvent('click_appstore_pricing_annual', {'button_location': 'pricing_annual'})" class="btn btn-green" style="width:100%;justify-content:center;">Start Free Trial</a>
       </div>
     </div>
     <p class="trial-note reveal">7-day free trial for new users. No credit card required for kids. Cancel anytime from iPhone Settings.</p>
@@ -1308,7 +1352,7 @@
         The trial costs you nothing. It takes less than 5 minutes to set up. And the moment your child asks you what more can they do to earn kudos — you will understand why families can't go back.
       </p>
       <div class="cta-actions">
-        <a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_final_cta', {'button_location': 'final_cta'})" class="apple-badge" style="padding:18px 32px;border-radius:16px;">
+        <a href="https://apps.apple.com/app/id1645781178" onclick="trackEvent('click_appstore_final_cta', {'button_location': 'final_cta'})" class="apple-badge" style="padding:18px 32px;border-radius:16px;">
           <span style="font-size:32px;">🍎</span>
           <div>
             <span style="font-size:11px;font-weight:400;opacity:0.7;display:block;">Download free on the</span>
@@ -1345,7 +1389,7 @@
           <li><a href="#features">Features</a></li>
           <li><a href="#behaviors">What Kids Learn</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="https://apps.apple.com/app/id1645781178" onclick="gtag('event', 'click_appstore_footer', {'button_location': 'footer'})">Download App</a></li>
+          <li><a href="https://apps.apple.com/app/id1645781178" onclick="trackEvent('click_appstore_footer', {'button_location': 'footer'})">Download App</a></li>
         </ul>
       </div>
       <div>
@@ -1374,36 +1418,86 @@
 </footer>
 
 <script>
+  // Each feature is isolated so a failure in one never leaves the rest of the
+  // page unwired, and never leaves revealed content stuck invisible.
+  const supportsObserver = 'IntersectionObserver' in window;
+
+  const showAllReveals = () =>
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('up'));
+
+  const setupFeature = (name, fn, onFailure) => {
+    try {
+      fn();
+    } catch (error) {
+      window.kudosyReportError('feature_failed:' + name, error);
+      if (onFailure) {
+        try {
+          onFailure();
+        } catch (fallbackError) {
+          window.kudosyReportError('feature_fallback_failed:' + name, fallbackError);
+        }
+      }
+    }
+  };
+
   // ─── SCROLL REVEAL ───
-  const ro = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('up'); ro.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  setupFeature('scroll_reveal', () => {
+    if (!supportsObserver) { showAllReveals(); return; }
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('up'); ro.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  }, showAllReveals);
 
   // ─── COUNTER ───
-  const co = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        const t = parseInt(e.target.getAttribute('data-count'));
-        let n = 0; const step = t/50;
-        const i = setInterval(() => {
-          n = Math.min(n+step, t);
-          e.target.innerHTML = Math.round(n) + '<span>%</span>';
-          if(n >= t) clearInterval(i);
-        }, 30);
-        co.unobserve(e.target);
+  setupFeature('counter', () => {
+    const render = (el, value) => { el.innerHTML = Math.round(value) + '<span>%</span>'; };
+    const animate = el => {
+      const t = parseInt(el.getAttribute('data-count'), 10);
+      if (!Number.isFinite(t)) {
+        window.kudosyReportError('counter_invalid_target', el.getAttribute('data-count'));
+        return;
       }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
+      let n = 0; const step = t/50;
+      const i = setInterval(() => {
+        try {
+          n = Math.min(n+step, t);
+          render(el, n);
+          if(n >= t) clearInterval(i);
+        } catch (error) {
+          clearInterval(i);
+          window.kudosyReportError('counter_tick_failed', error);
+          render(el, t);
+        }
+      }, 30);
+    };
+
+    const counters = document.querySelectorAll('[data-count]');
+    if (!supportsObserver) { counters.forEach(animate); return; }
+    const co = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting) {
+          co.unobserve(e.target);
+          animate(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(el => co.observe(el));
+  });
 
   // ─── FAQ ───
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const open = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if(!open) item.classList.add('open');
+  setupFeature('faq', () => {
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        try {
+          const item = btn.parentElement;
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+        } catch (error) {
+          window.kudosyReportError('faq_toggle_failed', error);
+        }
+      });
     });
   });
 </script>
